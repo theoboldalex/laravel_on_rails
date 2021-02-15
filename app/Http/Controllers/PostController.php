@@ -28,6 +28,11 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         Post::create([
             'title' => $request->title,
             'body' => $request->body
@@ -36,15 +41,20 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
-    public function update($id)
+    public function edit($id)
     {
         return view('posts.update', [
             'post' => Post::where('id', $id)->first()
         ]);
     }
 
-    public function storeUpdate(Request $request)
+    public function update(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $post = Post::where('id', $request->id)->first();
 
         $post->update([

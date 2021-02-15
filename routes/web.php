@@ -21,8 +21,8 @@ Route::get('/create', [PostController::class, 'create'])->name('create');
 Route::post('/create', [PostController::class, 'store']);
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('single');
 Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
-Route::get('/update/{id}', [PostController::class, 'update'])->name('update');
-Route::post('/update/{id}', [PostController::class, 'storeUpdate']);
+Route::get('/update/{id}', [PostController::class, 'edit'])->name('update');
+Route::post('/update/{id}', [PostController::class, 'update']);
 
 Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/auth/register', [RegisterController::class, 'store']);
