@@ -15,3 +15,9 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/create', [PostController::class, 'create'])->name('create');
+Route::post('/create', [PostController::class, 'store']);
+Route::get('/{id}', [PostController::class, 'show'])->name('single');
+Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
+Route::get('/update/{id}', [PostController::class, 'update'])->name('update');
+Route::post('/update/{id}', [PostController::class, 'storeUpdate']);
