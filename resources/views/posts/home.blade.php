@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (auth()->user())
-        <p>Hello {{ auth()->user()->username }}</p>
-    @endif
     <h1 class="font-semibold text-3xl py-4">Posts</h1>
 
     <a href="{{ route('create') }}" class="text-blue-600 hover:text-blue-800 transition duration-300 ease">Create a post</a>

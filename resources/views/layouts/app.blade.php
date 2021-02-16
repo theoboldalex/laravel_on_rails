@@ -8,6 +8,26 @@
     <title>Laravel on Rails</title>
 </head>
 <body>
+    <nav class="shadow h-16">
+        <div class="flex justify-between items-center h-full mx-20">
+            <a href="{{ route('home') }}"><h1 class="text-2xl font-bold"><em>Laravel on Rails</em></h1></a>
+            @auth
+                <div class="flex">
+                <p class="opacity-60"><em>Hello {{ auth()->user()->username }}</em></p>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class=" ml-4 opacity-60 hover:opacity-80 transition duration-300 ease">Logout</button>
+                    </form>
+                </div>
+            @endauth
+            @guest
+                <div class="flex">
+                    <a href="{{ route('login') }}" class="opacity-60 hover:opacity-80 transition duration-300 ease">Login</a>
+                    <a href="{{ route('register') }}" class="ml-4 opacity-60 hover:opacity-80 transition duration-300 ease">Register</a>
+                </div>
+            @endguest
+        </div>
+    </nav>
     <main class="container mx-20">
         @yield('content')
     </main>

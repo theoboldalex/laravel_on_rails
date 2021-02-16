@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <h1 class="font-semibold text-3xl my-4">Create a post</h1>
     <form action="/create" method="POST" class="flex flex-col">
         @csrf
         <div class="my-2 flex flex-col">
