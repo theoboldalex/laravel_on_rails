@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\User\UserPostController;
 |
 */
 
+Route::post('/{post}/comments', [CommentController::class, 'store'])->name('addComment');
 Route::get('/{user}/posts', [UserPostController::class, 'index'])->name('userPosts');
 
 Route::get('/', [PostController::class, 'index'])->name('home');
