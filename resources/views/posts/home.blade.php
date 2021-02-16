@@ -4,11 +4,13 @@
     @if (auth()->user())
         <p>Hello {{ auth()->user()->username }}</p>
     @endif
-    <h1>Posts</h1>
+    <h1 class="font-semibold text-3xl py-4">Posts</h1>
 
-    <a href="{{ route('create') }}">Create a post</a>
+    <a href="{{ route('create') }}" class="text-blue-600 hover:text-blue-800 transition duration-300 ease">Create a post</a>
     @foreach ($posts as $post)
-        <h4><a href="{{ route('single', $post->id) }}">{{ $post->title }}</a></h4>
-        <p>{{ $post->body }}</p>
+        <div class="my-4">
+            <h4 class="font-semibold text-xl"><a href="{{ route('single', $post->id) }}">{{ $post->title }}</a></h4>
+            <p class="font-light">{{ $post->body }}</p>
+        </div>
     @endforeach
 @endsection
