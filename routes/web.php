@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,8 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/{user}/posts', [UserPostController::class, 'index'])->name('userPosts');
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/create', [PostController::class, 'create'])->name('create');

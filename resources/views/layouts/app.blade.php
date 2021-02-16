@@ -13,7 +13,7 @@
             <a href="{{ route('home') }}"><h1 class="text-2xl font-bold"><em>Laravel on Rails</em></h1></a>
             @auth
                 <div class="flex">
-                <p class="opacity-60"><em>Hello {{ auth()->user()->username }}</em></p>
+                <a href="{{ route('userPosts', auth()->user()) }}" class="opacity-60"><em>Hello {{ auth()->user()->username }}</em></a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class=" ml-4 opacity-60 hover:opacity-80 transition duration-300 ease">Logout</button>

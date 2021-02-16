@@ -35,7 +35,8 @@ class PostController extends Controller
 
         Post::create([
             'title' => $request->title,
-            'body' => $request->body
+            'body' => $request->body,
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect()->route('home');
@@ -68,6 +69,8 @@ class PostController extends Controller
     public function destroy($id)    
     {
         $post = Post::where('id', $id)->first();
+
+        $this->authorize('delete', $post);
 
         $post->delete();
 
