@@ -23,15 +23,17 @@ Route::post('/{post}/comments', [CommentController::class, 'store'])->name('addC
 Route::get('/{user}/posts', [UserPostController::class, 'index'])->name('userPosts');
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/create', [PostController::class, 'create'])->name('create');
-Route::post('/create', [PostController::class, 'store']);
+Route::get('/create', [PostController::class, 'create'])->name('create')->middleware(['auth']);
+Route::post('/create', [PostController::class, 'store'])->middleware(['auth']);
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('single');
-Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
+Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('delete')->middleware(['auth']);
 Route::get('/update/{id}', [PostController::class, 'edit'])->name('update');
-Route::post('/update/{id}', [PostController::class, 'update']);
+Route::post('/update/{id}', [PostController::class, 'update'])->middleware(['auth']);
 
-Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/auth/register', [RegisterController::class, 'store']);
-Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
-Route::post('/auth/login', [LoginController::class, 'store']);
-Route::post('/auth/logout', [LogoutController::class, 'store'])->name('logout');
+Route::group(['prefix' => '/auth'], function() {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+    Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+});
