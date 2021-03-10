@@ -30,8 +30,10 @@ Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
 Route::get('/update/{id}', [PostController::class, 'edit'])->name('update');
 Route::post('/update/{id}', [PostController::class, 'update']);
 
-Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/auth/register', [RegisterController::class, 'store']);
-Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
-Route::post('/auth/login', [LoginController::class, 'store']);
-Route::post('/auth/logout', [LogoutController::class, 'store'])->name('logout');
+Route::group(['prefix' => '/auth'], function() {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+    Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+});
